@@ -87,7 +87,7 @@ $obj['header'] = array(
             </div>
             <div class="modal-bodys">
                 <p id="alertNotifModal" class="mt-2"></p>
-                <input id="id_admin" name="id_admin" value="" type="hidden">
+                <input id="id_siswa" name="id_siswa" value="" type="hidden">
                 <div class="row ">
                     <div class="col p-6">
                         <div class="row">
@@ -109,7 +109,7 @@ $obj['header'] = array(
                                 <select name="jenis_sekolah" id="jenis_sekolah" class="form-control form-control-lg">
                                     <option value="">Pilih Jenis</option>
                                     <option value="swasta">Swasta</option>
-                                    <option value="Negri">Negri</option>
+                                    <option value="negri">Negri</option>
                                 </select>
                                 <small></small>
                             </div>
@@ -378,17 +378,17 @@ $obj['header'] = array(
 
         $('body').on('click', '.btnEditAdmin', function() {
 
-            var id_admin = $(this).data('id_admin');
-            var nama = $(this).data('nama');
-            var username = $(this).data('username');
-            var password = $(this).data('password');
+            var id_siswa = $(this).data('id_siswa');
+            var nama = $(this).data('nama_siswa');
+            var nisn = $(this).data('nisn');
+            var jenis_sekolah_asal = $(this).data('jenis_sekolah_awal');
             var email = $(this).data('email');
             var all_admin = $(this).data('role-all_admin');
             var tambah_admin = $(this).data('role-tambah_admin');
             var all_user = $(this).data('role-all_user');
             var all_produk = $(this).data('role-all_produk');
             var tambah_produk = $(this).data('role-tambah_produk');
-
+            // console.log(sekolah_asal);
             var transaksi = $(this).data('role-transaksi');
             var bundling = $(this).data('role-bundling');
             var grade = $(this).data('role-grade');
@@ -409,32 +409,12 @@ $obj['header'] = array(
 
             // $('.btnEditAdmin').on('click', function() {
 
-            $('#id_admin').val(id_admin);
-            $('#username').val(username);
-            $('#password').val(password);
-            $('#email').val(email);
+            $('#id_siswa').val(id_siswa);
+            $('#nama_siswa').val(nama);
+            $('#nisn').val(nisn);
+            $('#jenis_sekolah').val(jenis_sekolah_asal);
             $('#nama').val(nama);
 
-            var noRoleSelected = true;
-            if (all_admin || tambah_admin || all_user ||
-                all_produk || tambah_produk ||
-                transaksi || bundling || grade ||
-                spek_hp || spek_smartwatch || spek_laptop || waktu
-            )
-                noRoleSelected = false;
-            if (all_admin == "1") $('#role-all_admin').prop('checked', true);
-            if (tambah_admin == "1") $('#role-tambah_admin').prop('checked', true);
-            if (all_user == "1") $('#role-all_user').prop('checked', true);
-            if (all_produk == "1") $('#role-all_produk').prop('checked', true);
-            if (tambah_produk == "1") $('#role-tambah_produk').prop('checked', true);
-
-            if (transaksi == "1") $('#role-transaksi').prop('checked', true);
-            if (bundling == "1") $('#role-bundling').prop('checked', true);
-            if (grade == "1") $('#role-grade').prop('checked', true);
-            if (spek_hp == "1") $('#role-spek_hp').prop('checked', true);
-            if (spek_smartwatch == "1") $('#role-spek_smartwatch').prop('checked', true);
-            if (spek_laptop == "1") $('#role-spek_laptop').prop('checked', true);
-            if (waktu == "1") $('#role-waktu').prop('checked', true);
 
 
             // return false;
