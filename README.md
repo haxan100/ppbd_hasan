@@ -1,5 +1,5 @@
-# AdminLTE-CRUD-With-Codeigniter
-CRUD dengan Template Admin LTE menggunakan Codeigniter
+#  PPBD dengan AdminLTE-Codeigniter-jquery-ajax
+PPBD 
 
 Fitur : 
   1. CRUD with Ajax
@@ -10,3 +10,6 @@ Fitur :
 Akun Login :
   1. username : auwfar / password : auwfar
   2. username : ozil / password : ozil
+   
+
+   masih tahap pengembangan.
