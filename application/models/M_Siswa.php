@@ -232,5 +232,14 @@ class M_Siswa extends CI_Model {
         $this->db->where('id_class', $id_kelas);
         return  $this->db->update('dt_class', $inUser);
     }
+    public function delete_kelas($id_class)
+    {
+        $sql = "DELETE FROM dt_class WHERE id_class='" . $id_class . "'";
+        // var_dump($sql);die;  
+
+      return  $this->db->query($sql);
+
+        // return $this->db->affected_rows();
+    }
 
 }

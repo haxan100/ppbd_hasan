@@ -300,17 +300,17 @@ $obj['header'] = array(
 
 
         $('body').on('click', '.btnHapus', function() {
-            var id_siswa = $(this).data('id_siswa');
-            var nama_siswa = $(this).data('nama_siswa');
+            var id_class = $(this).data('id_class');
+            var nama_class = $(this).data('nama_class');
 
-            var c = confirm('Apakah anda yakin akan menghapus siswa: "' + nama_siswa + '" ?');
+            var c = confirm('Apakah anda yakin akan menghapus kelas: "' + nama_class + '" ?');
             if (c == true) {
                 $.ajax({
-                    url: '<?= $bu ?>siswa/hapus_siswa',
+                    url: '<?= $bu ?>siswa/hapus_kelas',
                     dataType: 'json',
                     method: 'POST',
                     data: {
-                        id_siswa: id_siswa
+                        id_class: id_class
                     }
                 }).done(function(e) {
                     console.log(e);

@@ -391,7 +391,18 @@ class Siswa extends AUTH_Controller
     }
 
 
+    public function hapus_kelas()
+    {
+        $id = $_POST['id_class'];
+        $result = $this->M_Siswa->delete_kelas($id);
+        // var_dump($result);die;  
 
+        if ($result) {
+            echo show_succ_msg('Data Kelas Berhasil dihapus', '20px');
+        } else {
+            echo show_err_msg('Data Kelas Gagal dihapus', '20px');
+        }
+    }
 
 
 
