@@ -107,4 +107,12 @@ class M_Siswa extends CI_Model {
         return $status;
     }
 
+    public function update_profile_siswa($inUser, $id_siswa)
+    # code...
+    {
+
+        $this->db->where('id_siswa', $id_siswa);
+       return  $this->db->update('data_siswa',$inUser);
+    }
+
 }

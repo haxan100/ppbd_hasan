@@ -53,14 +53,16 @@ class Siswa extends AUTH_Controller
                     data-id_siswa="' . $row->id_siswa . '"
                     data-nisn="' . $row->nisn . '"
                     data-nama_siswa="' . $row->nama_siswa . '"
+                    data-sekolah_asal="' . $row->sekolah_asal . '"
                     data-jenis_sekolah_awal="' . $row->jenis_sekolah_awal . '"
-                    data-role-alamat="' . $row->alamat . '"	data-role-nohp="' . $row->nohp . '"
-                    data-role-nama_ibu="' . $row->nama_ibu . '"
-                    data-role-nama_ayah="' . $row->nama_ayah . '"
-                    data-role-status="' . $row->status . '"  
-                    data-role-tnggal_lahir="' . $row->tanggal_lahir . '"
-                    data-role-tempat_lahir="' . $row->tempat_lahir . '"
-                    data-role-id_class="' . $row->id_class . '">
+                    data-alamat="' . $row->alamat . '"	data-role-nohp="' . $row->nohp . '"
+                    data-nama_ibu="' . $row->nama_ibu . '"
+                    data-nama_ayah="' . $row->nama_ayah . '"
+                    data-status="' . $row->status . '"  
+                    data-tanggal_lahir="' . $row->tanggal_lahir . '"
+                    data-tempat_lahir="' . $row->tempat_lahir . '"
+                    data-nohp="' . $row->nohp . '"
+                    data-kelas="' . $row->id_class . '">
                     <i class="far fa-edit"></i> Ubah</button>
 
         <button class="btn btn-danger my-1 btnHapus text-white" 
@@ -112,7 +114,7 @@ class Siswa extends AUTH_Controller
         $kelas = $this->input->post('kelas', TRUE);
         $register_at = date('YmdHis');
      
-
+        // var_dump($nama);die;
 
         $message = 'Gagal menambahkan Siswa Baru!<br>Silahkan lengkapi data yang diperlukan.';
         $errorInputs = array();
@@ -160,6 +162,71 @@ class Siswa extends AUTH_Controller
             'errorInputs' => $errorInputs
         ));
     }
+
+    }
+
+    public function edit_siswa()
+    {
+        $id_siswa = $this->input->post('id_siswa', TRUE);
+        $nama_siswa = $this->input->post('nama_siswa', TRUE);
+        $nisn = $this->input->post('nisn', TRUE);
+        $no_hp = $this->input->post('no_hp', TRUE);
+        $status = $this->input->post('status', TRUE);
+        $sekolah_asal = $this->input->post('sekolah_asal', TRUE);
+
+        $jenis_sekolah = $this->input->post('jenis_sekolah', TRUE);
+        $alamat = $this->input->post('alamat', TRUE);
+        $nama_ibu = $this->input->post('nama_ibu', TRUE);
+        $nama_ayah = $this->input->post('nama_ayah', TRUE);
+
+        $tempat_lahir = $this->input->post('tempat_lahir', TRUE);
+        $tanggal_lahir = $this->input->post('tanggal_lahir', TRUE);
+        $kelas = $this->input->post('kelas', TRUE);
+        $now = date('YmdHis');
+        //  var_dump($now);die;
+
+        // var_dump($pil_banks);die();
+        $message = 'Gagal menambahkan Produk Baru!<br>Silahkan lengkapi data yang diperlukan.';
+        $errorInputs = array();
+        $statusnya = true;
+
+        $inUser = array(
+            'status' => $status,
+            'nama_siswa' => $nama_siswa,
+            'nisn' => $nisn,
+            'nohp' => $no_hp,
+            'jenis_sekolah_awal' => $jenis_sekolah,
+            'sekolah_asal' => $sekolah_asal,
+            'alamat' => $alamat,
+            'nama_ibu' => $nama_ibu,
+            'nama_ayah' => $nama_ayah,
+            'status' => $status,
+
+            'tempat_lahir' => $tempat_lahir,
+            'tanggal_lahir' => $tanggal_lahir,
+            'id_kelas' => $kelas,
+            'update_at' => $now,
+        );
+       
+        // var_dump($cek);die;
+
+        if ($statusnya) {
+            if ($this->M_Siswa->update_profile_siswa($inUser, $id_siswa))
+
+
+
+
+            $message = 'Berhasil Mengubah User Siswa ';
+        } else {
+            $message = 'Gagal ';
+        }
+        echo json_encode(array(
+            'status' => $statusnya,
+            'message' => $message,
+            'errorInputs' => $errorInputs
+        ));
+        // var_dump($status);
+        // die();
 
     }
 
