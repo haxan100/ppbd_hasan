@@ -351,7 +351,44 @@ class Siswa extends AUTH_Controller
         }
     }
 
+    public function edit_kelas()
+    {
+        $id_kelas = $this->input->post('id_kelas', TRUE);
+        $nama_kelas = $this->input->post('nama_kelas', TRUE);
+        $now = date('YmdHis');
+        //  var_dump($now);die;
 
+        // var_dump($pil_banks);die();
+        $message = 'Gagal menambahkan Kelas Baru!<br>Silahkan lengkapi data yang diperlukan.';
+        $errorInputs = array();
+        $statusnya = true;
+
+        $inUser = array(
+            'id_class' => $id_kelas,
+            'nama_class' => $nama_kelas,
+        );
+
+        // var_dump($cek);die;
+
+        if ($statusnya) {
+            if ($this->M_Siswa->update_kelas($inUser, $id_kelas))
+
+
+
+
+                $message = 'Berhasil Mengubah User Siswa ';
+        } else {
+            $message = 'Gagal ';
+        }
+        echo json_encode(array(
+            'status' => $statusnya,
+            'message' => $message,
+            'errorInputs' => $errorInputs
+        ));
+        // var_dump($status);
+        // die();
+
+    }
 
 
 

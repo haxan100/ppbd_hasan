@@ -225,5 +225,12 @@ class M_Siswa extends CI_Model {
         }
         return $status;
     }
+    public function update_kelas($inUser, $id_kelas)
+    # code...
+    {
+
+        $this->db->where('id_class', $id_kelas);
+        return  $this->db->update('dt_class', $inUser);
+    }
 
 }

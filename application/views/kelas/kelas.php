@@ -84,7 +84,7 @@ $obj['header'] = array(
             </div>
             <div class="modal-bodys">
                 <p id="alertNotifModal" class="mt-2"></p>
-                <input id="id_siswa" name="id_siswa" value="" type="hidden">
+                <input id="id_kelas" name="id_kelas" value="" type="hidden">
                 <div class="row ">
                     <div class="col p-6">
                         <div class="row">
@@ -163,7 +163,7 @@ $obj['header'] = array(
             $('small.text-danger').html('');
             var nama = $('#nama_kelas').val();
 
-
+            console.log(nama)
             if (nama == '') {
                 $('*[for="nama_kelas"] > small').html('Harap diisi!');
                 alert('harap isi Nama!');
@@ -217,21 +217,9 @@ $obj['header'] = array(
 
         $('body').on('click', '.btnEditAdmin', function() {
 
-            var id_siswa = $(this).data('id_siswa');
-            var nama = $(this).data('nama_siswa');
-            var nisn = $(this).data('nisn');
-            var jenis_sekolah_asal = $(this).data('jenis_sekolah_awal');
-            var sekolah_asal = $(this).data('sekolah_asal');
-            var alamat = $(this).data('alamat');
-            var no_hp = $(this).data('nohp');
-            var nama_ibu = $(this).data('nama_ibu');
-            var nama_ayah = $(this).data('nama_ayah');
-            var status = $(this).data('status');
-            // console.log(sekolah_asal);
-            var tanggal_lahir = $(this).data('tanggal_lahir');
-            var tempat_lahir = $(this).data('tempat_lahir');
-            var kelas = $(this).data('kelas');
-
+            var id_class = $(this).data('id_class');
+            var nama_kelas = $(this).data('nama_kelas');
+                console.log(id_class);
 
             $('#btnEditAdmin').show();
             $('#btnTambahAdmin').hide();
@@ -244,21 +232,8 @@ $obj['header'] = array(
 
             // $('.btnEditAdmin').on('click', function() {
 
-            $('#id_siswa').val(id_siswa);
-            $('#nama_siswa').val(nama);
-            $('#nisn').val(nisn);
-            $('#jenis_sekolah').val(jenis_sekolah_asal);
-            $('#sekolah_asal').val(sekolah_asal);
-
-            $('#alamat').val(alamat);
-            $('#no_hp').val(no_hp);
-            $('#nama_ibu').val(nama_ibu);
-            $('#nama_ayah').val(nama_ayah);
-            $('#status').val(status);
-
-            $('#tanggal_lahir').val(tanggal_lahir);
-            $('#tempat_lahir').val(tempat_lahir);
-            $('#kelas').val(kelas);
+            $('#id_kelas').val(id_class);
+            $('#nama_kelas').val(nama_kelas);
 
 
 
@@ -271,97 +246,28 @@ $obj['header'] = array(
             // return false;
 
             $('small.text-danger').html('');
-            var id_siswa = $('#id_siswa').val();
-            var nisn = $('#nisn').val();
-            var nama_siswa = $('#nama_siswa').val();
-            var jenis_sekolah = $('#jenis_sekolah').val();
-            var sekolah_asal = $('#sekolah_asal').val();
+            var id_kelas = $('#id_kelas').val();
+            var nama_kelas = $('#nama_kelas').val();
 
-            var jenis_sekolah = $('#jenis_sekolah option:selected').val();
-
-            var sekolah_asal = $('#sekolah_asal').val();
-
-            var alamat = $('#alamat').val();
-            var no_hp = $('#no_hp').val();
-            var nama_ibu = $('#nama_ibu').val();
-
-            var nama_ayah = $('#nama_ayah').val();
-            var status = $('#status').val();
-            var tanggal_lahir = $('#tanggal_lahir').val();
-            var tempat_lahir = $('#tempat_lahir').val();
-
-            var kelas = $('#kelas option:selected').val();
-
-            if (nama_siswa == '') {
-                $('*[for="nama_siswa"] > small').html('Harap diisi!');
+            if (nama_kelas == '') {
+                $('*[for="nama_kelas"] > small').html('Harap diisi!');
                 alert('harap isi Nama!');
-            } else if (nisn == '') {
-                $('*[for="nisn"] > small').html('Harap diisi!');
-                // alert('harap isi NISN!');
-            } else if (jenis_sekolah == '') {
-                $('*[for="jenis_sekolah"] > small').html('Harap diisi!');
-                alert('harap isi Jenis Sekolah!');
-            } else if (sekolah_asal == '') {
-                $('*[for="sekolah_asal"] > small').html('Harap diisi!');
-                alert('harap isi Sekolah Asal!');
-            } else if (alamat == '') {
-                $('*[for="alamat"] > small').html('Harap diisi!');
-                alert('harap isi alamat!');
-            } else if (no_hp == '') {
-                $('*[for="no_hp"] > small').html('Harap diisi!');
-                alert('harap isi no_hp!');
-            } else if (nama_ibu == '') {
-                $('*[for="nama_ibu"] > small').html('Harap diisi!');
-                alert('harap isi nama ibu!');
-            } else if (nama_ayah == '') {
-                $('*[for="nama_ayah"] > small').html('Harap diisi!');
-                alert('harap isi Nama Ayah!');
-            } else if (status == '') {
-                $('*[for="status"] > small').html('Harap diisi!');
-                alert('harap isi Status!');
-            } else if (tanggal_lahir == '') {
-                $('*[for="tanggal_lahir"] > small').html('Harap diisi!');
-                alert('harap isi tanggal lahir!');
-            } else if (kelas == '') {
-                $('*[for="kelas"] > small').html('Harap diisi!');
-                alert('harap isi kelas!');
             } else {
 
                 $.ajax({
-                    url: '<?= $bu ?>siswa/edit_siswa ',
+                    url: '<?= $bu ?>siswa/edit_kelas ',
                     dataType: 'json',
                     method: 'POST',
                     data: {
-                        id_siswa: id_siswa,
-                        nama_siswa: nama_siswa,
-                        nisn: nisn,
-                        no_hp: no_hp,
-                        jenis_sekolah: jenis_sekolah,
-                        sekolah_asal: sekolah_asal,
-                        alamat: alamat,
-                        nama_ibu: nama_ibu,
-                        nama_ayah: nama_ayah,
-                        status: status,
-                        tanggal_lahir: tanggal_lahir,
-                        tempat_lahir: tempat_lahir,
-                        kelas: kelas,
+                        id_kelas: id_kelas,
+                        nama_kelas: nama_kelas,
 
                     }
                 }).done(function(e) {
                     console.log('berhasil');
                     // console.log(e);
                     // console.log(e);
-                    $('#nama_siswa').val('');
-                    $('#nisn').val('');
-                    $('#jenis_sekolah').val('');
-                    $('#sekolah_asal').val('');
-                    $('#alamat').val('');
-                    $('#no_hp').val('');
-                    $('#nama_ibu').val('');
-                    $('#nama_ayah').val('');
-                    $('#status').val('');
-                    $('#tempat_lahir').val('');
-                    $('#kelas').val('');
+                    $('#nama_kelas').val('');
 
                     // $('#modalAdmin').modal('hide'); //$('body').removeClass('modal-open');$('.modal-backdrop').remove();
                     var alert = '';
