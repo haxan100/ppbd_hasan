@@ -1,9 +1,9 @@
 <aside class="main-sidebar">
   <!-- sidebar: style can be found in sidebar.less -->
   <section class="sidebar">
-    <?php 
-// var_dump($page);die;
-?>
+    <?php
+    // var_dump($page);die;
+    ?>
     <!-- Sidebar user panel (optional) -->
     <div class="user-panel">
       <div class="pull-left image">
@@ -36,6 +36,14 @@
         <a href="<?php echo base_url('siswa'); ?>">
           <i class="fa fa-home"></i>
           <span>Siswa</span>
+        </a>
+      </li>
+      <li <?php if ($page == 'kelas') {
+            echo 'class="active"';
+          } ?>>
+        <a href="<?php echo base_url('siswa/kelas'); ?>">
+          <i class="fa fa-home"></i>
+          <span>Kelas</span>
         </a>
       </li>
 

@@ -103,7 +103,21 @@ class Siswa extends AUTH_Controller
 
         $this->template->views('siswa/home', $data);
     }
+    public function kelas()
+    {
+        $data['userdata'] = $this->userdata;
+        $data['dataPegawai'] = $this->M_pegawai->select_all();
+        $data['dataPosisi'] = $this->M_posisi->select_all();
+        $data['dataKota'] = $this->M_kota->select_all();
 
+        $data['page'] = "kelas";
+        $data['judul'] = "Data Siswa";
+        $data['deskripsi'] = "Manage Data Siswa";
+        $data['ci'] = $this;
+        $data['modal_tambah_pegawai'] = show_my_modal('modals/modal_tambah_pegawai', 'tambah-pegawai', $data);
+
+        $this->template->views('kelas/kelas', $data);
+    }
 
     public function tambah_siswa()
     {
@@ -252,6 +266,66 @@ class Siswa extends AUTH_Controller
             echo show_err_msg('Data Pegawai Gagal dihapus', '20px');
         }
     }
+    public function getAllKelas()
+    {
+        // if (!$this->isLoggedInAdmin()) {
+        //     echo '403 Forbidden!';
+        //     exit();
+        // }
+        $dt = $this->M_Siswa->dt_class($_POST);
+        $datatable['draw']            = isset($_POST['draw']) ? $_POST['draw'] : 1;
+        $datatable['recordsTotal']    = $dt['totalData'];
+        $datatable['recordsFiltered'] = $dt['totalData'];
+        $datatable['data']            = array();
+        $status = '';
+        $start  = isset($_POST['start']) ? $_POST['start'] : 0;
+        $no = $start + 1;
+        foreach ($dt['data']->result() as $row) {
+            // var_dump($row);die;
+
+
+
+            $fields = array($no++);
+            $fields[] = $row->nama_class;
+            // $fields[] = $row->status;
+            // $fields[] = $row->id_admin;
+            $fields[] = '
+        <button class="btn btn-warning my-1 btnEditAdmin  text-white" 
+                    data-id_class="' . $row->id_class . '"
+                    data-nama_kelas="' . $row->nama_class . '">
+                    <i class="far fa-edit"></i> Ubah</button>
+
+        <button class="btn btn-danger my-1 btnHapus text-white" 
+          
+                    data-id_class="' . $row->id_class . '" 
+                    data-nama_class="' . $row->nama_class . '"
+        ><i class="fas fa-trash"></i> Hapus</button>
+        ';
+
+            $datatable['data'][] = $fields;
+        }
+        echo json_encode($datatable);
+        exit();
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
