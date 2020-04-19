@@ -35,6 +35,7 @@ class M_pegawai extends CI_Model {
 	}
 
 	public function select_by_kota($id) {
+		// var_dump($id);die;
 		$sql = "SELECT COUNT(*) AS jml FROM pegawai WHERE id_kota = {$id}";
 
 		$data = $this->db->query($sql);

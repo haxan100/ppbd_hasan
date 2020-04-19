@@ -245,5 +245,48 @@ class M_Siswa extends CI_Model {
     {
         return $this->db->get('dt_class')->result();
     }
+    public function getAllSiswa()
+    {
+        $sql = " SELECT * from data_siswa";
+
+        $data = $this->db->query($sql);
+
+        return $data->result();
+    }
+    public function total_siswa()
+    {
+        $data = $this->db->get('data_siswa');
+
+        return $data->num_rows();
+    }
+    public function total_siswa_ditunggu()
+    {
+        $sql = " SELECT * from data_siswa where status = 3";
+
+        $data = $this->db->query($sql);
+
+        // return $data->result();
+
+        return $data->num_rows();
+    }
+    public function select_all()
+    {
+        $this->db->select('*');
+        $this->db->from('data_siswa');
+
+        $data = $this->db->get();
+
+        return $data->result();
+    }
+    public function select_by_status($id)
+    {
+			// var_dump($status);die;
+        
+        $sql = "SELECT COUNT(*) AS jml FROM data_siswa WHERE status = {$id} ";
+
+        $data = $this->db->query($sql);
+        // var_dump($data->row());die;
+        return $data->row();
+    }
 
 }

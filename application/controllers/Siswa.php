@@ -413,6 +413,13 @@ class Siswa extends AUTH_Controller
         ));
     }
 
+    public function get_all_siswa()
+    {
+        $sql="SELECT * FROM `data_siswa`";
+        $data =$this->db->query($sql);
+        return $data->result();
+    }
+
 
 
 
