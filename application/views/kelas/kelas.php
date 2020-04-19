@@ -315,6 +315,7 @@ $obj['header'] = array(
                     }
                 }).done(function(e) {
                     console.log(e);
+                    // return(false);
                     notifikasi('#alertNotif', e.message, !e.status);
 
                     datatable.ajax.reload();

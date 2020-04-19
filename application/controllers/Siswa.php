@@ -291,13 +291,13 @@ class Siswa extends AUTH_Controller
             // $fields[] = $row->id_admin;
             $fields[] = '
         <button class="btn btn-warning my-1 btnEditAdmin  text-white" 
-                    data-id_class="' . $row->id_class . '"
+                    data-id_class="' . $row->id_kelas . '"
                     data-nama_kelas="' . $row->nama_class . '">
                     <i class="far fa-edit"></i> Ubah</button>
 
         <button class="btn btn-danger my-1 btnHapus text-white" 
           
-                    data-id_class="' . $row->id_class . '" 
+                    data-id_class="' . $row->id_kelas . '" 
                     data-nama_class="' . $row->nama_class . '"
         ><i class="fas fa-trash"></i> Hapus</button>
         ';
@@ -364,7 +364,7 @@ class Siswa extends AUTH_Controller
         $statusnya = true;
 
         $inUser = array(
-            'id_class' => $id_kelas,
+            'id_kelas' => $id_kelas,
             'nama_class' => $nama_kelas,
         );
 
@@ -393,15 +393,24 @@ class Siswa extends AUTH_Controller
 
     public function hapus_kelas()
     {
+        $message = 'Gagal menambahkan Kelas Baru!<br>Silahkan lengkapi data yang diperlukan.';
+        $errorInputs = array();
+        $statusnya = true;
+
         $id = $_POST['id_class'];
         $result = $this->M_Siswa->delete_kelas($id);
         // var_dump($result);die;  
 
         if ($result) {
-            echo show_succ_msg('Data Kelas Berhasil dihapus', '20px');
+            $message = 'Berhasil Menghapus User Siswa ';
         } else {
-            echo show_err_msg('Data Kelas Gagal dihapus', '20px');
+            $message = 'Gagal Menghapus User Siswa ';
         }
+        echo json_encode(array(
+            'status' => $statusnya,
+            'message' => $message,
+            'errorInputs' => $errorInputs
+        ));
     }
 
 
