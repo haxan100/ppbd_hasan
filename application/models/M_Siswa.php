@@ -24,7 +24,7 @@ class M_Siswa extends CI_Model {
 
 
         // custom SQL
-        $sql = "SELECT * FROM  data_siswa a left join dt_class dc on a.id_kelas=dc.id_class";
+        $sql = "SELECT * FROM  data_siswa a left join dt_class dc on a.id_kelas=dc.id_kelas";
 
 
         $where = "";
@@ -240,6 +240,10 @@ class M_Siswa extends CI_Model {
       return  $this->db->query($sql);
 
         // return $this->db->affected_rows();
+    }
+    public function getAllKelas()
+    {
+        return $this->db->get('dt_class')->result();
     }
 
 }

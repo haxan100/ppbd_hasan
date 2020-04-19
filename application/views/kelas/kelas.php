@@ -134,7 +134,8 @@ $obj['header'] = array(
                 },
                 {
                     "targets": 2,
-                    "className": "dt-head-center"
+                    "className": "dt-head-center",
+                    "orderable":false,
                 },
 
 
@@ -188,7 +189,7 @@ $obj['header'] = array(
                     //$('body').removeClass('modal-open');$('.modal-backdrop').remove();
                     var alert = '';
                     if (e.status) {
-                        // notifikasi('#alertNotif', e.message, false);
+                        notifikasi('#alertNotif', e.message, false);
                         $('#modalAdmin').modal('hide');
                         datatable.ajax.reload();
 
@@ -209,7 +210,7 @@ $obj['header'] = array(
                     console.log(e);
                     // resetForm($('#modalAdmin'));
                     $('#modalAdmin').modal('show');
-                    // notifikasi('#alertNotif', 'Terjadi kesalahan!', true);
+                    notifikasi('#alertNotif', 'Terjadi kesalahan!', true);
                 });
             }
             return false;
@@ -272,12 +273,12 @@ $obj['header'] = array(
                     // $('#modalAdmin').modal('hide'); //$('body').removeClass('modal-open');$('.modal-backdrop').remove();
                     var alert = '';
                     if (e.status) {
-                        // notifikasi('#alertNotif', e.message, false);
+                        notifikasi('#alertNotif', e.message, false);
                         $('#modalAdmin').modal('hide');
                         datatable.ajax.reload();
                         // resetForm();
                     } else {
-                        // notifikasi('#alertNotifModal', e.message, true);
+                        notifikasi('#alertNotifModal', e.message, true);
                         // $.each(e.errorInputs, function(key, val) {
                         // 	console.log(val[0], val[1]);
                         // 	validasi(val[0], false, val[1]);
@@ -314,7 +315,7 @@ $obj['header'] = array(
                     }
                 }).done(function(e) {
                     console.log(e);
-                    // notifikasi('#alertNotif', e.message, !e.status);
+                    notifikasi('#alertNotif', e.message, !e.status);
 
                     datatable.ajax.reload();
                 }).fail(function(e) {
@@ -322,7 +323,7 @@ $obj['header'] = array(
                     console.log(e);
                     datatable.ajax.reload();
                     var message = 'Terjadi Kesalahan. #JSMP01';
-                    // notifikasi('#alertNotif', message, true);
+                    notifikasi('#alertNotif', message, true);
                 });
             }
             return false;
@@ -331,5 +332,5 @@ $obj['header'] = array(
     });
 </script>
 <?php
-$ci->load->view('_layout/_footer', $obj);
+
 ?>

@@ -72,7 +72,7 @@ class Siswa extends AUTH_Controller
                     data-tanggal_lahir="' . $row->tanggal_lahir . '"
                     data-tempat_lahir="' . $row->tempat_lahir . '"
                     data-nohp="' . $row->nohp . '"
-                    data-kelas="' . $row->id_class . '">
+                    data-id_kelas="' . $row->id_kelas . '">
                     <i class="far fa-edit"></i> Ubah</button>
 
         <button class="btn btn-danger my-1 btnHapus text-white" 
@@ -94,7 +94,7 @@ class Siswa extends AUTH_Controller
         $data['dataPegawai'] = $this->M_pegawai->select_all();
         $data['dataPosisi'] = $this->M_posisi->select_all();
         $data['dataKota'] = $this->M_kota->select_all();
-
+        $data['listKelas'] = $this->M_Siswa->getAllKelas();
         $data['page'] = "siswa";
         $data['judul'] = "Data Siswa";
         $data['deskripsi'] = "Manage Data Siswa";

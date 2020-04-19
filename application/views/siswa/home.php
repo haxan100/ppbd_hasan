@@ -174,9 +174,13 @@ $obj['header'] = array(
                                 <select name="kelas" id="kelas" class="form-control form-control-lg">
                                     <option value="">Pilih Kelas</option>
                                     <option value="0">Belum Milih</option>
-                                    <option value="1">Kelas 7</option>
-                                    <option value="2">Kelas 8</option>
-                                    <option value="3">Kelas 9</option>
+                                    <?php
+                                    foreach ($listKelas as $r) {
+                                        echo '
+												<option value="' . $r->id_kelas . '">' . $r->nama_class . '</option>
+											';
+                                    }
+                                    ?>
                                 </select>
                                 <small></small>
                             </div>
@@ -351,7 +355,7 @@ $obj['header'] = array(
                     //$('body').removeClass('modal-open');$('.modal-backdrop').remove();
                     var alert = '';
                     if (e.status) {
-                        // notifikasi('#alertNotif', e.message, false);
+                        notifikasi('#alertNotif', e.message, false);
                         $('#modalAdmin').modal('hide');
                         datatable.ajax.reload();
 
@@ -372,7 +376,7 @@ $obj['header'] = array(
                     console.log(e);
                     // resetForm($('#modalAdmin'));
                     $('#modalAdmin').modal('show');
-                    // notifikasi('#alertNotif', 'Terjadi kesalahan!', true);
+                    notifikasi('#alertNotif', 'Terjadi kesalahan!', true);
                 });
             }
             return false;
@@ -393,8 +397,9 @@ $obj['header'] = array(
             // console.log(sekolah_asal);
             var tanggal_lahir = $(this).data('tanggal_lahir');
             var tempat_lahir = $(this).data('tempat_lahir');
-            var kelas = $(this).data('kelas');
-
+            var kelas = $(this).data('id_kelas');
+            console.log(kelas);
+            // return(false);
 
             $('#btnEditAdmin').show();
             $('#btnTambahAdmin').hide();
@@ -529,12 +534,12 @@ $obj['header'] = array(
                     // $('#modalAdmin').modal('hide'); //$('body').removeClass('modal-open');$('.modal-backdrop').remove();
                     var alert = '';
                     if (e.status) {
-                        // notifikasi('#alertNotif', e.message, false);
+                        notifikasi('#alertNotif', e.message, false);
                         $('#modalAdmin').modal('hide');
                         datatable.ajax.reload();
                         // resetForm();
                     } else {
-                        // notifikasi('#alertNotifModal', e.message, true);
+                        notifikasi('#alertNotifModal', e.message, true);
                         // $.each(e.errorInputs, function(key, val) {
                         // 	console.log(val[0], val[1]);
                         // 	validasi(val[0], false, val[1]);
@@ -549,7 +554,7 @@ $obj['header'] = array(
                     console.log(e);
                     // resetForm($('#modalAdmin'));
                     $('#modalAdmin').modal('hide');
-                    // notifikasi('#alertNotif', 'Terjadi kesalahan!', true);
+                    notifikasi('#alertNotif', 'Terjadi kesalahan!', true);
                 });
             }
             return false;
@@ -571,7 +576,7 @@ $obj['header'] = array(
                     }
                 }).done(function(e) {
                     console.log(e);
-                    // notifikasi('#alertNotif', e.message, !e.status);
+                    notifikasi('#alertNotif', e.message, !e.status);
 
                     datatable.ajax.reload();
                 }).fail(function(e) {
@@ -579,7 +584,7 @@ $obj['header'] = array(
                     console.log(e);
                     datatable.ajax.reload();
                     var message = 'Terjadi Kesalahan. #JSMP01';
-                    // notifikasi('#alertNotif', message, true);
+                    notifikasi('#alertNotif', message, true);
                 });
             }
             return false;
