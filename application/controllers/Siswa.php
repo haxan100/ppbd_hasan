@@ -308,6 +308,48 @@ class Siswa extends AUTH_Controller
         exit();
     }
 
+    public function tambah_kelas()
+    {
+
+        $nama_kelas = $this->input->post('nama', TRUE);
+
+        // var_dump($nama_kelas);die;
+
+        $message = 'Gagal menambahkan Kelas Baru!<br>Silahkan lengkapi data yang diperlukan.';
+        $errorInputs = array();
+        $status = true;
+
+        $in = array(
+            'nama_class' => $nama_kelas,
+            // 'status' => $status,
+        );
+        // var_dump($in);die();   
+
+        $cek = $this->M_Siswa->cari_kelas($nama_kelas);
+        // var_dump($cek);die();   
+
+        if ($cek >= 1) {
+            $status = false;
+            $errorInputs[] = array('#nama_kelas', 'Kelas Sudah Ada!');
+            // alert('data sudah ada');
+        }
+        // var_dump($in);die();
+        if ($status) {
+            if ($this->M_Siswa->tambah_kelas($in)) {
+                // $id_admin = $this->AdminModel->get_last_id()->last_id;
+
+                $message = 'Berhasil Menambahkan Kelas ';
+            } else {
+                $message = 'Username Sudah Ada! ';
+            }
+
+            echo json_encode(array(
+                'status' => $status,
+                'message' => $message,
+                'errorInputs' => $errorInputs
+            ));
+        }
+    }
 
 
 
@@ -325,8 +367,7 @@ class Siswa extends AUTH_Controller
 
 
 
-
-
+//lama baru
 
 
 

@@ -90,7 +90,7 @@ $obj['header'] = array(
                         <div class="row">
                             <div class="col form-group">
                                 <label for="nama_kelas">Nama Kelas </label>
-                                <input id="nama_siswa" name="nama_siswa" placeholder="Masukan Nama Lengkap" required type="text" class="form-control">
+                                <input id="nama_kelas" name="nama_kelas" placeholder="Masukan Nama Kelas" required type="text" class="form-control">
 
                                 <small></small>
                             </div>
@@ -176,34 +176,12 @@ $obj['header'] = array(
                     method: 'POST',
                     data: {
                         nama: nama,
-                        nisn: nisn,
-                        // password: password,
-                        jenis_sekolah: jenis_sekolah,
-                        sekolah_asal: sekolah_asal,
-                        alamat: alamat,
-                        no_hp: no_hp,
-                        nama_ibu: nama_ibu,
-                        nama_ayah: nama_ayah,
-                        status: status,
-                        tanggal_lahir: tanggal_lahir,
-                        tempat_lahir: tempat_lahir,
-                        kelas: kelas,
 
                     }
                 }).done(function(e) {
                     console.log('berhasil');
                     // console.log(e);
-                    $('#nama_siswa').val('');
-                    $('#nisn').val('');
-                    $('#jenis_sekolah').val('');
-                    $('#sekolah_asal').val('');
-                    $('#alamat').val('');
-                    $('#no_hp').val('');
-                    $('#nama_ibu').val('');
-                    $('#nama_ayah').val('');
-                    $('#status').val('');
-                    $('#tempat_lahir').val('');
-                    $('#kelas').val('');
+                    $('#nama_kelas').val('');
 
                     $('#modalAdmin').modal('show');
                     datatable.ajax.reload();

@@ -207,5 +207,23 @@ class M_Siswa extends CI_Model {
             'data' => $data,
         );
     }
+    public function cari_kelas($nama_kelas)
+    {
+        $this->db->where('nama_class', $nama_kelas);
+        return $this->db->get('dt_class')->num_rows();
+        // var_dump($lastquery);die;
+    }
+    public function tambah_kelas($in)
+    {
+
+        if ($this->db->insert('dt_class', $in)) {
+            $status =  true;
+        } else {
+            var_dump($this->db->error());
+            die();
+            $status = false;
+        }
+        return $status;
+    }
 
 }
