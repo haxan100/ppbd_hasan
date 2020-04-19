@@ -37,15 +37,25 @@ class Siswa extends AUTH_Controller
         $datatable['recordsTotal']    = $dt['totalData'];
         $datatable['recordsFiltered'] = $dt['totalData'];
         $datatable['data']            = array();
-
+            $status='';
         $start  = isset($_POST['start']) ? $_POST['start'] : 0;
         $no = $start + 1;
         foreach ($dt['data']->result() as $row) {
             // var_dump($row);die;
+
+            if($row->status==1){
+                $status= 'Di Terima';
+            } else  if ($row->status == 0) {
+                $status = 'Di Tolak';
+            } else  {
+                $status = 'Di Tunggu / Belum Ada Aksi';
+            }
+
             $fields = array($no++);
-            $fields[] = $row->nisn;
             $fields[] = $row->nama_siswa;
+            $fields[] = $row->nisn;
             $fields[] = $row->nohp;
+            $fields[] = $status;
             // $fields[] = $row->status;
             // $fields[] = $row->id_admin;
             $fields[] = '
@@ -67,8 +77,8 @@ class Siswa extends AUTH_Controller
 
         <button class="btn btn-danger my-1 btnHapus text-white" 
           
-                    data-id_admin="' . $row->id_siswa . '" 
-                    data-username="' . $row->nama_siswa . '"
+                    data-id_siswa="' . $row->id_siswa . '" 
+                    data-nama_siswa="' . $row->nama_siswa . '"
         ><i class="fas fa-trash"></i> Hapus</button>
         ';
 
@@ -228,6 +238,19 @@ class Siswa extends AUTH_Controller
         // var_dump($status);
         // die();
 
+    }
+
+        public function hapus_siswa()
+    {
+        $id = $_POST['id_siswa'];
+        // var_dump($id);die;
+        $result = $this->M_Siswa->delete_siswa($id);
+
+        if ($result) {
+            echo show_succ_msg('Data Pegawai Berhasil dihapus', '20px');
+        } else {
+            echo show_err_msg('Data Pegawai Gagal dihapus', '20px');
+        }
     }
 
 

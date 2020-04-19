@@ -53,18 +53,20 @@ $obj['header'] = array(
                             <thead>
                                 <tr>
                                     <th>No.</th>
-                                    <th>Username</th>
-                                    <th>Nama</th>
-                                    <th>Email</th>
+                                    <th>Nama Siswa</th>
+                                    <th>NISN</th>
+                                    <th>No HP</th>
+                                    <th>Status</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tfoot>
                                 <tr>
                                     <th>No.</th>
-                                    <th>Username</th>
-                                    <th>Nama</th>
-                                    <th>Email</th>
+                                    <th>Nama Siswa</th>
+                                    <th>NISN</th>
+                                    <th>No HP</th>
+                                    <th>Status</th>
                                     <th>Aksi</th>
                                 </tr>
                             </tfoot>
@@ -554,7 +556,34 @@ $obj['header'] = array(
         });
 
 
+        $('body').on('click', '.btnHapus', function() {
+            var id_siswa = $(this).data('id_siswa');
+            var nama_siswa = $(this).data('nama_siswa');
 
+            var c = confirm('Apakah anda yakin akan menghapus siswa: "' + nama_siswa + '" ?');
+            if (c == true) {
+                $.ajax({
+                    url: '<?= $bu ?>siswa/hapus_siswa',
+                    dataType: 'json',
+                    method: 'POST',
+                    data: {
+                        id_siswa: id_siswa
+                    }
+                }).done(function(e) {
+                    console.log(e);
+                    // notifikasi('#alertNotif', e.message, !e.status);
+
+                    datatable.ajax.reload();
+                }).fail(function(e) {
+                    console.log('gagal');
+                    console.log(e);
+                    datatable.ajax.reload();
+                    var message = 'Terjadi Kesalahan. #JSMP01';
+                    // notifikasi('#alertNotif', message, true);
+                });
+            }
+            return false;
+        });
 
     });
 </script>

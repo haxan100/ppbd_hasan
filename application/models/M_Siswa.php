@@ -10,14 +10,16 @@ class M_Siswa extends CI_Model {
         $columns = array(
             'nisn',
             'nama_siswa',
-            'no_hp',
+            'nisn',            
+            'nohp',
         );
 
         // untuk search
         $columnsSearch = array(
             'nisn',
             'nama_siswa',
-            'no_hp',
+            'nisn',            
+            'nohp',
         );
 
 
@@ -113,6 +115,15 @@ class M_Siswa extends CI_Model {
 
         $this->db->where('id_siswa', $id_siswa);
        return  $this->db->update('data_siswa',$inUser);
+    }
+
+    public function delete_siswa($id_siswa)
+    {
+        $sql = "DELETE FROM data_siswa WHERE id_siswa='" . $id_siswa . "'";
+
+        $this->db->query($sql);
+
+        // return $this->db->affected_rows();
     }
 
 }
